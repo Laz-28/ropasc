@@ -1,27 +1,37 @@
-console.log("Select your choice: rock, paper, or scissors");
-function selectChoice(player1, player2){
 
-      if(player1 === "rock" && player2 === "scissors"){
-        return "Player 1 wins!";
-      }else if(player1 === "rock" && player2 === "paper"){
-        return "Player 2 wins!";
-      }else if(player1 === "rock" && player2 === "rock"){
-        return "It's a tie!";
-      }else if(player1 === "paper" && player2 === "scissors"){
-        return "Player 2 wins!";
-      }else if(player1 === "paper" && player2 === "rock"){
-        return "Player 1 wins!";
-      }else if(player1 === "paper" && player2 === "paper"){
-        return "It's a tie!";
-      }else if(player1 === "scissors" && player2 === "scissors"){
-        return "It's a tie!";
-      }else if(player1 === "scissors" && player2 === "paper"){
-        return "Player 1 wins!";
-      }else if(player1 === "scissors" && player2 === "rock"){
-        return "Player 2 wins!";
-      }else{
-        return "Invalid Inputs"
-      }
+function getRandomChoice(){
+  const choices = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
 }
 
-console.log(selectChoice("rock", "scissors"));
+
+
+const gameRules = {
+    "rock": "paper",
+    "paper": "scissors",
+    "scissors" : "rock"
+  };
+
+function playRound(playerSelection, computerSelection) {
+
+  let computer = computerSelection();
+
+  if(playerSelection === computer) {
+    return {
+      computerChoice: computer,
+      roundResult: "It's a tie!"
+    }
+  }
+
+
+  let result = gameRules[playerSelection] === computer ? "Computer wins!" : "Player wins!";
+
+return {
+  computerChoice: computer,
+  roundResult: result
+}
+
+}
+
+console.log(playRound("rock", getRandomChoice));
