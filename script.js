@@ -34,4 +34,25 @@ return {
 
 }
 
-console.log(playRound("rock", getRandomChoice));
+
+let playerScore = 0;
+let computerScore = 0;
+
+function roundResult(result) {
+  if(result === "Player wins!") {
+    playerScore++;
+  } else if(result === "Computer wins!") {
+    computerScore++;
+  }  
+
+return {
+  playerScore: playerScore,
+  computerScore: computerScore
+}
+}
+
+
+let roundScore = playRound("rock", getRandomChoice);
+console.log(roundScore);
+console.log(roundResult(roundScore.roundResult));
+
